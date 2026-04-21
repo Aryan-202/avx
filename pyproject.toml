@@ -9,3 +9,7 @@ dependencies = [
     "pypandoc>=1.17",
     "typer>=0.24.1",
 ]
+
+
+[project.scripts]
+avx = "avx.cli:main"
