@@ -1,5 +1,5 @@
 import argparse
-from avx.commands import ls
+from avx.commands import ls_run
 
 def main():
     parser = argparse.ArgumentParser(description="avx CLI")
@@ -12,6 +12,6 @@ def main():
     args = parser.parse_args()
 
     if args.command == "ls":
-        ls.list_files(args)
+        ls_run(args)
     else:
         parser.print_help()
