@@ -1,9 +1,0 @@
-# Zig build output and cache
-.zig-cache/
-zig-out/
-
-# Editor specific files
-.vscode/
-.idea/
-*.swp
-.DS_Store
