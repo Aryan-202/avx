@@ -12,6 +12,6 @@ def main():
     args = parser.parse_args()
 
     if args.command == "ls":
-        ls.run(args)
+        ls.list_files(args)
     else:
         parser.print_help()
