@@ -1,7 +1,7 @@
 import os
 from avx.converters import convert_docx_to_pdf
 
-def convert_files(args):
+def convert_files(args: object) -> None:
     """
     Convert a file from one format to another based on its extension.
 
@@ -9,8 +9,8 @@ def convert_files(args):
         args (argparse.Namespace): Command-line arguments containing the input
             file path (args.input) and the output file path (args.output).
     """
-    input_file = args.input
-    output_file = args.output
+    input_file: str = args.input
+    output_file: str = args.output
 
     if not os.path.exists(input_file):
         print('file does not exists')
