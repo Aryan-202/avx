@@ -1,5 +1,5 @@
 import os
-from avx.converters import convert_docx_to_pdf
+from avx import converters
 
 def convert_files(args: object) -> None:
     """
@@ -20,6 +20,8 @@ def convert_files(args: object) -> None:
     output_ext = os.path.splitext(output_file)[1].lower()
 
     if input_ext == '.docx' and output_ext == '.pdf':
-        convert_docx_to_pdf(input_file, output_file)
+        converters.convert_docx_to_pdf(input_file, output_file)
+    elif input_ext == '.pptx' and output_ext == '.pdf':
+        converters.convert_pptx_to_pdf(input_path=input_file, output_path=output_file)
     else:
         print('conversion not supported')

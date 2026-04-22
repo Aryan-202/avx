@@ -5,9 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "comtypes>=1.4.16",
     "docx>=0.2.4",
     "docx2pdf>=0.1.8",
     "pillow>=12.2.0",
+    "ppt2pdf>=0.0.3",
     "pypandoc>=1.17",
     "rich>=15.0.0",
     "typer>=0.24.1",
