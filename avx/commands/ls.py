@@ -6,6 +6,13 @@ from rich.table import Table
 console = Console()
 
 def list_files(args):
+    """
+    List files and directories in the current working directory.
+
+    Args:
+        args (argparse.Namespace): Command-line arguments.
+            If args.all is True, hidden files are included.
+    """
     files = os.listdir(".")
 
     table = Table(title="Current Working Directory")
