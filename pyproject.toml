@@ -20,3 +20,11 @@ dependencies = [
 [project.scripts]
 avx = "avx.cli:main"
 avx-ui = "ui.main:main"
+
+[dependency-groups]
+dev = [
+    "flake8>=7.3.0",
+    "mypy>=2.0.0",
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+]

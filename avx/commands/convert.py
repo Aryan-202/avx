@@ -1,7 +1,8 @@
 import os
+import argparse
 from avx import converters
 
-def convert_files(args: object) -> None:
+def convert_files(args: argparse.Namespace) -> None:
     """
     Convert a file from one format to another based on its extension.
 
