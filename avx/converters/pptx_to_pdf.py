@@ -1,6 +1,4 @@
 import os
-import comtypes.client
-
 def convert_pptx_to_pdf(input_path: str, output_path: str) -> None:
     """
     Converts a PPTX file to a PDF using Microsoft PowerPoint COM interop.
@@ -9,6 +7,7 @@ def convert_pptx_to_pdf(input_path: str, output_path: str) -> None:
         input_path: Path to the source .pptx file.
         output_path: Path where the .pdf should be saved.
     """
+    import comtypes.client
     powerpoint = comtypes.client.CreateObject("Powerpoint.Application")
     powerpoint.Visible = 1  
 
