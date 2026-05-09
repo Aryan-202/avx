@@ -8,6 +8,7 @@ dependencies = [
     "comtypes>=1.4.16",
     "docx>=0.2.4",
     "docx2pdf>=0.1.8",
+    "flet[all]>=0.85.0",
     "pillow>=12.2.0",
     "ppt2pdf>=0.0.3",
     "pypandoc>=1.17",
@@ -18,3 +19,4 @@ dependencies = [
 
 [project.scripts]
 avx = "avx.cli:main"
+avx-ui = "ui.main:main"
