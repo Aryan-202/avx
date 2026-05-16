@@ -24,5 +24,7 @@ def convert_files(args: argparse.Namespace) -> None:
         converters.convert_docx_to_pdf(input_file, output_file)
     elif input_ext == '.pptx' and output_ext == '.pdf':
         converters.convert_pptx_to_pdf(input_path=input_file, output_path=output_file)
+    elif input_ext in ['.jpg', '.jpeg'] and output_ext == '.png':
+        converters.convert_jpg_to_png(input_file, output_file)
     else:
         print('conversion not supported')

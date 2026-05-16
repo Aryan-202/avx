@@ -1,0 +1,24 @@
+{
+  "name": "AVX Python Dev Container",
+  "build": {
+    "dockerfile": "../dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.formatting.provider": "none",
+        "python.testing.pytestEnabled": true
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.mypy-type-checker",
+        "ms-python.flake8"
+      ]
+    }
+  },
+  "remoteUser": "root",
+  "postCreateCommand": "uv pip install --system -e .[dev]"
+}

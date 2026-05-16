@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# AVX CLI wrapper
+python -m avx.cli "$@"

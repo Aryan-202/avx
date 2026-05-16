@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/python:3.13.0
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: pip install -e .[dev]
+      - run:
+          name: Run tests
+          command: pytest tests/
+
+workflows:
+  test-workflow:
+    jobs:
+      - test

@@ -43,6 +43,18 @@ class TestConvertFiles:
         )
 
     @patch('os.path.exists')
+    @patch('avx.converters.convert_jpg_to_png')
+    def test_convert_jpg_to_png(self, mock_convert, mock_exists):
+        """Test JPG to PNG conversion."""
+        mock_exists.return_value = True
+        args = argparse.Namespace(
+            input="test.jpg",
+            output="test.png"
+        )
+        convert_files(args)
+        mock_convert.assert_called_once_with("test.jpg", "test.png")
+
+    @patch('os.path.exists')
     def test_unsupported_conversion(self, mock_exists, capsys):
         """Test unsupported conversion format."""
         mock_exists.return_value = True
