@@ -1,5 +1,8 @@
 $ErrorActionPreference = 'Stop'
 
+# Enforce TLS 1.2 to prevent Invoke-WebRequest connection errors with GitHub
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 Write-Host "==========================================="
 Write-Host "Installing AVX..."
 Write-Host "==========================================="
