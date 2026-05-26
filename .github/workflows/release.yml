@@ -1,4 +1,4 @@
-name: Build and Release Executable
+name: Build and Release Executables
 
 on:
   push:
@@ -6,10 +6,29 @@ on:
       - 'v*' # Trigger this workflow when a tag like v1.0.0 is pushed
 
 jobs:
-  build-and-release:
-    name: Build Windows Executable
-    runs-on: windows-latest
-    
+  build:
+    name: Build for ${{ matrix.os }} (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - os: windows
+            arch: amd64
+            runner: windows-latest
+            executable_name: avx-windows-amd64.exe
+          - os: linux
+            arch: amd64
+            runner: ubuntu-latest
+            executable_name: avx-linux-amd64
+          - os: darwin
+            arch: amd64
+            runner: macos-13
+            executable_name: avx-darwin-amd64
+          - os: darwin
+            arch: arm64
+            runner: macos-latest
+            executable_name: avx-darwin-arm64
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,10 +49,30 @@ jobs:
 
       - name: Build executable with PyInstaller
         run: |
-          uv run pyinstaller --onefile --name avx-windows-amd64 avx/cli.py
+          uv run pyinstaller --onefile --name ${{ matrix.executable_name }} avx/cli.py
           
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.executable_name }}
+          path: dist/${{ matrix.executable_name }}
+
+  release:
+    name: Release to GitHub
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist-artifacts
+          merge-multiple: true
+
       - name: Release to GitHub
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/avx-windows-amd64.exe
+          files: dist-artifacts/*
           generate_release_notes: true
