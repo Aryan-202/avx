@@ -1,7 +1,12 @@
 from markdownify import markdownify
 
 def convert_html_to_md(input_file: str, output_file: str) -> None:
-    """Convert html to md."""
+    """Convert html to md.
+
+    Args:
+        input_file (str): The path to the input file.
+        output_file (str): The path to the output file.
+    """
     with open(input_file, 'r', encoding='utf-8') as f:
         html_text = f.read()
     md = markdownify(html_text)

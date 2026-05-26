@@ -33,4 +33,4 @@ def list_files(all: bool = False):
 
         table.add_row(f, file_type, size, modified)
 
-    console.print(table)
+    console.print(table)

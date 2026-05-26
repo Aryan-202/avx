@@ -16,6 +16,15 @@ DOMAINS = {
 }
 
 def get_converter_func(input_ext: str, output_ext: str):
+    """Get the converter function for the given extensions.
+
+    Args:
+        input_ext (str): The input extension.
+        output_ext (str): The output extension.
+
+    Returns:
+        Callable: The converter function.
+    """
     in_clean = input_ext.lstrip('.')
     out_clean = output_ext.lstrip('.')
     func_name = f"convert_{in_clean}_to_{out_clean}"
@@ -25,6 +34,14 @@ def get_converter_func(input_ext: str, output_ext: str):
 
 
 def get_domain(ext: str) -> str | None:
+    """Get the domain for a given extension.
+
+    Args:
+        ext (str): The file extension.
+
+    Returns:
+        str | None: The domain name or None if unsupported.
+    """
     for domain, exts in DOMAINS.items():
         if ext in exts:
             return domain
@@ -33,6 +50,14 @@ def get_domain(ext: str) -> str | None:
 import glob
 
 def predict_output_ext(input_ext: str) -> str:
+    """Predict the logical output extension for an input extension.
+
+    Args:
+        input_ext (str): The input extension.
+
+    Returns:
+        str: The predicted output extension.
+    """
     predictions = {
         ".docx": ".pdf", ".md": ".html", ".csv": ".json",
         ".png": ".jpg", ".jpg": ".png", ".jpeg": ".png",
@@ -42,6 +67,12 @@ def predict_output_ext(input_ext: str) -> str:
     return predictions.get(input_ext, ".out")
 
 def process_single_file(input_file: str, output_file: str) -> None:
+    """Process a single file conversion.
+
+    Args:
+        input_file (str): The input file path.
+        output_file (str): The output file path.
+    """
     input_ext = os.path.splitext(input_file)[1].lower()
     output_ext = os.path.splitext(output_file)[1].lower()
 
@@ -72,8 +103,13 @@ def process_single_file(input_file: str, output_file: str) -> None:
         console.print(f"[bold yellow]Not Implemented:[/] '{input_ext}' to '{output_ext}'.")
 
 
-def convert_files(input_pattern: str, output: str = None) -> None:
-    """Convert files with batch and auto-output capabilities."""
+def convert_files(input_pattern: str, output: str | None = None) -> None:
+    """Convert files with batch and auto-output capabilities.
+
+    Args:
+        input_pattern (str): The input file path or wildcard.
+        output (str, optional): The output file path, extension, or directory.
+    """
     files = glob.glob(input_pattern)
     if not files:
         console.print(f"[bold red]Error:[/] No files found matching '{input_pattern}'.")

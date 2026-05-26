@@ -1,7 +1,12 @@
 from moviepy.editor import AudioFileClip
 
 def convert_m4a_to_ogg(input_file: str, output_file: str) -> None:
-    """Converts a m4a file to a ogg file."""
+    """Converts a m4a file to a ogg file.
+
+    Args:
+        input_file (str): The path to the input file.
+        output_file (str): The path to the output file.
+    """
     clip = AudioFileClip(input_file)
     clip.write_audiofile(output_file, logger=None)
     clip.close()

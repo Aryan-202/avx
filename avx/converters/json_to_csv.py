@@ -1,7 +1,12 @@
 import csv, json
 
 def convert_json_to_csv(input_file: str, output_file: str) -> None:
-    """Convert json to csv."""
+    """Convert json to csv.
+
+    Args:
+        input_file (str): The path to the input file.
+        output_file (str): The path to the output file.
+    """
     with open(input_file, 'r', encoding='utf-8') as jsonf:
         data = json.load(jsonf)
     if not data:
