@@ -5,13 +5,12 @@ from rich.table import Table
 
 console = Console()
 
-def list_files(args):
+def list_files(all: bool = False):
     """
     List files and directories in the current working directory.
 
     Args:
-        args (argparse.Namespace): Command-line arguments.
-            If args.all is True, hidden files are included.
+        all (bool): If True, hidden files are included.
     """
     files = os.listdir(".")
 
@@ -23,7 +22,7 @@ def list_files(args):
     table.add_column("Modified", style="yellow")
 
     for f in files:
-        if not args.all and f.startswith("."):
+        if not all and f.startswith("."):
             continue
 
         path = os.path.join(".", f)
@@ -34,4 +33,4 @@ def list_files(args):
 
         table.add_row(f, file_type, size, modified)
 
-    console.print(table)
+    console.print(table)

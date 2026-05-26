@@ -57,7 +57,17 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Run additional quality checks
-      run: |
-        echo "Running quality gates..."
-        # Add more quality checks here
+    - name: Install uv and set up Python
+      uses: astral-sh/setup-uv@v5
+      with:
+        python-version: "3.13"
+        enable-cache: true
+        
+    - name: Install dependencies
+      run: uv sync --all-extras --dev
+    
+    - name: Run Ruff Linter
+      run: uv run ruff check avx tests
+      
+    - name: Run Ruff Formatter Check
+      run: uv run ruff format --check avx tests

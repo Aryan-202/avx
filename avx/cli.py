@@ -1,28 +1,25 @@
-import argparse
-from avx.commands import list_files, convert_files
+import typer
+from avx.commands.ls import list_files
+from avx.commands.convert import convert_files
+
+app = typer.Typer(help="avx CLI - A powerful file conversion tool")
+
+@app.command(name="ls")
+def ls_cmd(all: bool = typer.Option(False, "--all", "-a", help="Include hidden files")):
+    """List files and directories in the current working directory."""
+    list_files(all)
+
+@app.command(name="convert")
+def convert_cmd(
+    input: str = typer.Argument(..., help="Input file path or wildcard (e.g., *.png)"),
+    output: str = typer.Option(None, "--output", "-o", help="Output file path, extension, or directory")
+):
+    """Convert a file from one format to another."""
+    convert_files(input, output)
 
 def main():
-    """
-    Main entry point for the avx CLI.
+    """Main entry point for the avx CLI."""
+    app()
 
-    Parses command-line arguments and routes to the appropriate command handler.
-    """
-    parser = argparse.ArgumentParser(description="avx CLI")
-
-    subparsers = parser.add_subparsers(dest="command")
-
-    ls_parser = subparsers.add_parser("ls", help="list files")
-    ls_parser.add_argument("-a", "--all", action="store_true")
-
-    convert_parser = subparsers.add_parser("convert", help="convert files")
-    convert_parser.add_argument("input", help="input file path")
-    convert_parser.add_argument("-o","--output", required=True, help="output file path")
-
-    args = parser.parse_args()
-
-    if args.command == "ls":
-        list_files(args)
-    elif args.command == "convert":
-        convert_files(args)
-    else:
-        parser.print_help()
+if __name__ == "__main__":
+    main()

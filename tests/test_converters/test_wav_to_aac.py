@@ -1,0 +1,12 @@
+from unittest.mock import patch, MagicMock
+from avx.converters.wav_to_aac import convert_wav_to_aac
+
+@patch('avx.converters.wav_to_aac.AudioFileClip')
+def test_convert_wav_to_aac(mock_clip):
+    """Test wav to aac conversion."""
+    mock_instance = MagicMock()
+    mock_clip.return_value = mock_instance
+    convert_wav_to_aac('input.wav', 'output.aac')
+    mock_clip.assert_called_once_with('input.wav')
+    mock_instance.write_audiofile.assert_called_once_with('output.aac', logger=None)
+    mock_instance.close.assert_called_once()

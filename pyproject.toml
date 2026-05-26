@@ -13,6 +13,9 @@ dependencies = [
     "docx>=0.2.4",
     "docx2pdf>=0.1.8",
     "flet[all]>=0.85.0",
+    "markdown>=3.10.2",
+    "markdownify>=1.2.2",
+    "moviepy>=1.0.3",
     "pillow>=12.2.0",
     "ppt2pdf>=0.0.3",
     "pypandoc>=1.17",
@@ -31,4 +34,5 @@ dev = [
     "mypy>=2.0.0",
     "pytest>=9.0.3",
     "pytest-cov>=7.1.0",
+    "ruff>=0.15.14",
 ]
