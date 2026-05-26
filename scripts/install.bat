@@ -1,52 +1,29 @@
 @echo off
 setlocal enabledelayedexpansion
-chcp 65001 >nul
 
-echo ==================================================
-echo           Installing AVX CLI                      
-echo ==================================================
+powershell -NoProfile -Command "Write-Host 'Starting AVX Installation...' -ForegroundColor Cyan"
 
-set REPO_URL="git+https://github.com/Aryan-202/avx.git"
-
-:: Check for pipx
-where pipx >nul 2>nul
-if %ERRORLEVEL% equ 0 (
-    echo 📦 Found pipx! Installing avx using pipx ^(Recommended^)...
-    pipx install %REPO_URL%
-    if !ERRORLEVEL! equ 0 (
-        echo ✅ AVX installed successfully!
-        goto success
-    )
+:: Check architecture
+if /i "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+    set ARCH=amd64
+) else if /i "%PROCESSOR_ARCHITECTURE%"=="ARM64" (
+    set ARCH=arm64
+) else (
+    powershell -NoProfile -Command "Write-Host 'Unsupported architecture: %PROCESSOR_ARCHITECTURE%' -ForegroundColor Red"
+    exit /b 1
 )
 
-:: Check for uv
-where uv >nul 2>nul
-if %ERRORLEVEL% equ 0 (
-    echo 📦 Found uv! Installing avx using uv...
-    uv tool install %REPO_URL%
-    if !ERRORLEVEL! equ 0 (
-        echo ✅ AVX installed successfully!
-        goto success
-    )
-)
+set BINARY_URL=https://github.com/Aryan-202/avx/releases/latest/download/avx-windows-!ARCH!.exe
+set INSTALL_DIR=%USERPROFILE%\.local\bin
 
-:: Check for pip
-where pip >nul 2>nul
-if %ERRORLEVEL% equ 0 (
-    echo 📦 Found pip! Installing avx using pip...
-    pip install --user %REPO_URL%
-    if !ERRORLEVEL! equ 0 (
-        echo ✅ AVX installed successfully!
-        echo ⚠️  Note: Make sure your Python Scripts folder is in your PATH.
-        goto success
-    )
-)
+powershell -NoProfile -Command "Write-Host 'Preparing directory: !INSTALL_DIR!' -ForegroundColor White"
+if not exist "!INSTALL_DIR!" mkdir "!INSTALL_DIR!"
 
-echo Error: Python package manager ^(pipx, uv, or pip^) not found or installation failed.
-echo Please install Python from https://www.python.org/downloads/ and try again.
-exit /b 1
+powershell -NoProfile -Command "Write-Host 'Downloading AVX from GitHub...' -ForegroundColor White"
+curl.exe -# -fSL "!BINARY_URL!" -o "!INSTALL_DIR!\avx.exe"
 
-:success
-echo.
-echo You can now run 'avx --help' to get started!
-exit /b 0
+powershell -NoProfile -Command "Write-Host 'Finalizing configuration...' -ForegroundColor White"
+
+powershell -NoProfile -Command "$logo = @\"`n    ___ _    ___  __`n   /   | |  / / |/ /`n  / /| | | / /|   / `n / ___ | |/ //   |  `n/_/  |_|___//_/|_|  `n\"@; Write-Host $logo -ForegroundColor Cyan"
+
+powershell -NoProfile -Command "Write-Host 'AVX installed successfully to !INSTALL_DIR!\avx.exe' -ForegroundColor Green; Write-Host 'Make sure ' -NoNewline; Write-Host '!INSTALL_DIR!' -ForegroundColor Yellow -NoNewline; Write-Host ' is in your PATH.'; Write-Host 'You can now use the ''avx'' command anywhere.`n'"

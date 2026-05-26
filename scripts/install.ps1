@@ -1,41 +1,58 @@
-$ErrorActionPreference = "Stop"
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$ErrorActionPreference = 'Stop'
 
-Write-Host "==================================================" -ForegroundColor Cyan
-Write-Host "          Installing AVX CLI                      " -ForegroundColor Cyan
-Write-Host "==================================================" -ForegroundColor Cyan
+# Enforce TLS 1.2 to prevent Invoke-WebRequest connection errors with GitHub
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$RepoUrl = "git+https://github.com/Aryan-202/avx.git"
+Write-Host "Starting AVX Installation..." -ForegroundColor Cyan
 
-function Install-With-Pipx {
-    Write-Host "📦 Found pipx! Installing avx using pipx (Recommended)..." -ForegroundColor Yellow
-    pipx install $RepoUrl
-    Write-Host "✅ AVX installed successfully!" -ForegroundColor Green
-}
+$Architecture = $env:PROCESSOR_ARCHITECTURE.ToLower()
+Write-Progress -Activity "AVX Installation" -Status "Checking architecture ($Architecture)" -PercentComplete 10
+Start-Sleep -Milliseconds 400
 
-function Install-With-Uv {
-    Write-Host "📦 Found uv! Installing avx using uv..." -ForegroundColor Yellow
-    uv tool install $RepoUrl
-    Write-Host "✅ AVX installed successfully!" -ForegroundColor Green
-}
-
-function Install-With-Pip {
-    Write-Host "📦 Found pip! Installing avx using pip..." -ForegroundColor Yellow
-    pip install --user $RepoUrl
-    Write-Host "✅ AVX installed successfully!" -ForegroundColor Green
-    Write-Host "⚠️  Note: Make sure your Python Scripts folder is in your PATH." -ForegroundColor DarkYellow
-}
-
-if (Get-Command "pipx" -ErrorAction SilentlyContinue) {
-    Install-With-Pipx
-} elseif (Get-Command "uv" -ErrorAction SilentlyContinue) {
-    Install-With-Uv
-} elseif (Get-Command "pip" -ErrorAction SilentlyContinue) {
-    Install-With-Pip
+if ($Architecture -eq "amd64") {
+    $Arch = "amd64"
+} elseif ($Architecture -eq "arm64") {
+    $Arch = "arm64"
 } else {
-    Write-Host "Error: Python package manager (pipx, uv, or pip) not found." -ForegroundColor Red
-    Write-Host "Please install Python from https://www.python.org/downloads/ and try again." -ForegroundColor Red
+    Write-Host "Unsupported architecture: $Architecture" -ForegroundColor Red
     exit 1
 }
 
-Write-Host "`nYou can now run 'avx --help' to get started!" -ForegroundColor Cyan
+$BinaryUrl = "https://github.com/Aryan-202/avx/releases/latest/download/avx-windows-${Arch}.exe"
+$InstallDir = "$env:USERPROFILE\.local\bin"
+
+Write-Progress -Activity "AVX Installation" -Status "Preparing directory: $InstallDir" -PercentComplete 30
+Start-Sleep -Milliseconds 400
+
+if (-not (Test-Path -Path $InstallDir)) {
+    New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
+}
+
+$DestPath = Join-Path -Path $InstallDir -ChildPath "avx.exe"
+
+Write-Progress -Activity "AVX Installation" -Status "Downloading AVX from GitHub..." -PercentComplete 50
+
+Invoke-WebRequest -Uri $BinaryUrl -OutFile $DestPath
+
+Write-Progress -Activity "AVX Installation" -Status "Finalizing configuration" -PercentComplete 90
+Start-Sleep -Milliseconds 400
+
+Write-Progress -Activity "AVX Installation" -Status "Installation Complete" -PercentComplete 100
+Start-Sleep -Milliseconds 300
+Write-Progress -Activity "AVX Installation" -Completed
+
+$avxLogo = @"
+
+    ___ _    ___  __
+   /   | |  / / |/ /
+  / /| | | / /|   / 
+ / ___ | |/ //   |  
+/_/  |_|___//_/|_|  
+
+"@
+
+Write-Host $avxLogo -ForegroundColor Cyan
+
+Write-Host "AVX installed successfully to $DestPath" -ForegroundColor Green
+Write-Host "Make sure " -NoNewline; Write-Host $InstallDir -ForegroundColor Yellow -NoNewline; Write-Host " is in your PATH."
+Write-Host "You can now use the 'avx' command anywhere.`n"
