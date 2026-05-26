@@ -19,12 +19,17 @@ This method downloads the pre-compiled standalone executable, so you do not need
 
 **For Unix / macOS / Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Aryan-202/avx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Aryan-202/avx/main/scripts/install.sh | bash
 ```
 
 **For Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/Aryan-202/avx/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/Aryan-202/avx/main/scripts/install.ps1 | iex
+```
+
+**For Windows (Command Prompt):**
+```cmd
+curl -sL https://raw.githubusercontent.com/Aryan-202/avx/main/scripts/install.bat -o install.bat && install.bat && del install.bat
 ```
 
 ### Option 2: Python Package Manager
