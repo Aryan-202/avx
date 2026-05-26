@@ -2,29 +2,33 @@
 set -e
 
 echo "==========================================="
-echo "Installing AVX globally..."
+echo "Installing AVX..."
 echo "==========================================="
 
-if command -v uv &> /dev/null; then
-    echo "Using 'uv' for fast installation..."
-    uv tool install . --force
-    echo ""
-    echo "AVX installed successfully via uv!"
-    echo "You can now use the 'avx' command anywhere."
-    exit 0
+OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
+ARCH="$(uname -m)"
+
+if [ "$ARCH" = "x86_64" ]; then
+    ARCH="amd64"
+elif [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
+    ARCH="arm64"
 fi
 
-if command -v pipx &> /dev/null; then
-    echo "Using 'pipx' for isolated installation..."
-    pipx install . --force
-    echo ""
-    echo "AVX installed successfully via pipx!"
-    echo "You can now use the 'avx' command anywhere."
-    exit 0
+if [ "$OS" = "linux" ] || [ "$OS" = "darwin" ]; then
+    BINARY_URL="https://github.com/Aryan-202/avx/releases/latest/download/avx-${OS}-${ARCH}"
+else
+    echo "Unsupported OS: $OS"
+    exit 1
 fi
 
-echo "'uv' or 'pipx' not found. Falling back to standard pip..."
-pip install .
+INSTALL_DIR="$HOME/.local/bin"
+mkdir -p "$INSTALL_DIR"
+
+echo "Downloading AVX for $OS ($ARCH) from $BINARY_URL..."
+curl -fsSL "$BINARY_URL" -o "$INSTALL_DIR/avx"
+chmod +x "$INSTALL_DIR/avx"
+
 echo ""
-echo "AVX installed successfully!"
+echo "AVX installed successfully to $INSTALL_DIR/avx"
+echo "Make sure $INSTALL_DIR is in your PATH."
 echo "You can now use the 'avx' command anywhere."
