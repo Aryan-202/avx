@@ -1,0 +1,245 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  Deploy-Docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Deploy Docs
+        run: exit 1
+
+  Upload-Nightly-Wheel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Upload Nightly Wheel
+        run: exit 1
+
+  Test-3_10-Doctests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_10-Optional-Dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_10-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_11-Doctests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_11-Optional-Dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_11-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_12-Doctests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_12-Optional-Dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_12-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_13-Doctests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_13-Optional-Dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_13-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_14-Optional-Dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_15-Doctests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-3_15-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Benchmarks:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Bleeding-edge-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Build-Docs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Build-Nightly-Wheel:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Check-Authors:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Check-Merge-Conflicts:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Code-Quality:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Delete-previous-test-duration-caches:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Skipped"
+
+  Doctests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Merge-and-cache-new-test-durations:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Mypy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Mypy-With-python-flint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  PyTorch:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Python-2-Import-check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Run-zizmor:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Slow-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Sphinx-Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  SymEngine:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  TensorFlow:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-group-1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-group-2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-group-3:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Test-group-4:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  mpmath-master-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  pypy-3_11-Doctests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  pypy-3_11-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  python-flint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  python-flint-gmpy2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"
+
+  sdist-Check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Success"

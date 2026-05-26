@@ -12,6 +12,21 @@ The AVX open-source project is developed and continuously supported by a dedicat
 
 ## Installation
 
+There are several ways to install AVX on your system. 
+
+### Option 1: Python Package Manager (Recommended)
+You can install AVX directly via pip if it's published to PyPI, or from source:
+```bash
+pip install avx
+```
+Alternatively, for an isolated installation, you can use `uv` or `pipx` from the source directory:
+```bash
+uv tool install .
+# OR
+pipx install .
+```
+
+### Option 2: Installation Scripts
 AVX provides simple scripts to install the CLI tool globally on your system.
 
 **For Windows (PowerShell/CMD):**
@@ -22,14 +37,6 @@ install.bat
 **For Unix / macOS / Linux:**
 ```bash
 ./install.sh
-```
-
-**Manual Installation:**
-You can also install AVX manually. We highly recommend using `uv` or `pipx` for isolated global installation:
-```bash
-uv tool install .
-# OR
-pipx install .
 ```
 ## License
 AVX is released under the MIT License, allowing for robust modification and open collaboration. Certain domain conversion functionalities may rely on installed external libraries and utilities (like LibreOffice or FFmpeg) which retain their own specific licenses.
