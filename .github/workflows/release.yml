@@ -1,0 +1,39 @@
+name: Build and Release Executable
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger this workflow when a tag like v1.0.0 is pushed
+
+jobs:
+  build-and-release:
+    name: Build Windows Executable
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Install PyInstaller
+        run: uv pip install pyinstaller
+
+      - name: Build executable with PyInstaller
+        run: |
+          uv run pyinstaller --onefile --name avx-windows-amd64 avx/cli.py
+          
+      - name: Release to GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/avx-windows-amd64.exe
+          generate_release_notes: true
