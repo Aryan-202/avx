@@ -21,7 +21,7 @@ if (-not (Test-Path -Path $InstallDir)) {
     New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
 }
 
-$DestPath = Join-Path -Path $InstallDir -ChildName "avx.exe"
+$DestPath = Join-Path -Path $InstallDir -ChildPath "avx.exe"
 
 Write-Host "Downloading AVX from $BinaryUrl..."
 Invoke-WebRequest -Uri $BinaryUrl -OutFile $DestPath
