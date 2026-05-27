@@ -30,12 +30,12 @@ The AVX project is maintained by an active open-source community and continues t
 
 ## Why Choose AVX for File Conversion?
 
-- ✅ **No Dependencies Bloat** - Standalone binary available (no Python required)
-- ✅ **Universal Format Support** - Convert 100+ file formats with one tool
-- ✅ **Developer Friendly** - Easy CLI syntax, perfect for automation and scripts
-- ✅ **Production Ready** - Used in data pipelines and enterprise workflows
-- ✅ **Active Community** - Continuously maintained and updated with new format support
-- ✅ **MIT License** - Free to use and modify for any project
+- **No Dependencies Bloat** - Standalone binary available (no Python required)
+- **Universal Format Support** - Convert 100+ file formats with one tool
+- **Developer Friendly** - Easy CLI syntax, perfect for automation and scripts
+- **Production Ready** - Used in data pipelines and enterprise workflows
+- **Active Community** - Continuously maintained and updated with new format support
+- **MIT License** - Free to use and modify for any project
 
 ## Getting Started: Installation
 
