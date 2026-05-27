@@ -150,7 +150,9 @@ AVX integrates seamlessly with industry-standard conversion tools:
 
 ## Resources & Documentation
 
+* `docs/USAGE.md` - **Complete Usage Guide** - Installation, commands, workflows, examples, and troubleshooting
 * `docs/commands.md` - Commands Overview and CLI Flag Index
+* `docs/installation_guidence.md` - Step-by-step Installation Instructions
 * `docs/TODO.md` - Future Architectures, Engine Goals, and the Domain Roadmap
 
 ## Source Code Sitemap
