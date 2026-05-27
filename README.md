@@ -135,10 +135,10 @@ The **AVX Native Engine** is fundamentally an embeddable file processing manager
 
 The engine strictly relies on a **domain-driven architectural design** — keeping **document transformations** safely decoupled from **image transcoding** or **audio manipulation** modules. This modular approach ensures:
 
-- ✅ Easy to maintain and extend
-- ✅ Reduced dependency conflicts
-- ✅ Better performance per domain
-- ✅ Easier testing and debugging
+- Easy to maintain and extend
+- Reduced dependency conflicts
+- Better performance per domain
+- Easier testing and debugging
 
 ### Integration with External Tools
 
