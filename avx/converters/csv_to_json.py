@@ -1,4 +1,5 @@
-import csv, json
+import csv
+import json
 
 def convert_csv_to_json(input_file: str, output_file: str) -> None:
     """Convert csv to json.

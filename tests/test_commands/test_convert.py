@@ -1,4 +1,4 @@
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from avx.commands.convert import convert_files
 
 class TestConvertFiles:

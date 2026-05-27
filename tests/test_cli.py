@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch
 from typer.testing import CliRunner
 from avx.cli import app
