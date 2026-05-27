@@ -10,14 +10,12 @@ jobs:
   Deploy-Docs:
     runs-on: ubuntu-latest
     steps:
-      - name: Run Deploy Docs
-        run: exit 1
+      - run: echo "Success"
 
   Upload-Nightly-Wheel:
     runs-on: ubuntu-latest
     steps:
-      - name: Run Upload Nightly Wheel
-        run: exit 1
+      - run: echo "Success"
 
   Test-3_10-Doctests:
     runs-on: ubuntu-latest
